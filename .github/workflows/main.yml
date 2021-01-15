@@ -9,15 +9,26 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Get current package version
-      id: package-version
-      uses: martinbeentjes/npm-get-version-action@v1.1.0
-    - name: Create a Release
-      uses: actions/create-release@v1
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+    - name: Use Node.js
+      uses: actions/setup-node@v1
       with:
-        tag_name : ${{ steps.package-version.outputs.current-version}}
-        release_name: ${{ steps.package-version.outputs.current-version}}
-        body: Publish ${{ steps.package-version.outputs.current-version}}
+        node-version: 14
+    # Run install dependencies
+    - name: Install dependencies
+      run: npm install
+    # Run tests
+    - name: Build 
+      run: npm run compile
+    - name: Create vsix
+      id: create-vsix
+      uses: HaaLeo/publish-vscode-extension@v0
+      with:
+        pat: ''
+        dryRun: true
+    - name: use output
+      run: |
+        echo $json_var
+      env:
+        json_var: ${{ steps.create-vsix.outputs.vsixPath}}
+    
 

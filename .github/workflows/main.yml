@@ -39,9 +39,9 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       with:
-        tag_name : ${{ steps_package-version.outputs.current-version}}
-        release_name: ${{ steps_package-version.outputs.current-version}}
-        body: Publish ${{ steps_package-version.outputs.current-version}}
+        tag_name : ${{ steps.package_version.outputs.current-version}}
+        release_name: ${{ steps.package_version.outputs.current-version}}
+        body: Publish ${{ steps.package_version.outputs.current-version}}
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       env:

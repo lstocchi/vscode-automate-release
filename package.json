@@ -2,7 +2,7 @@
 	"name": "vscode-automate-release",
 	"displayName": "vscode-automate-release",
 	"description": "HelloWorld example for VS Code",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"publisher": "Luca",
 	"repository": "https://github.com/lstocchi/vscode-automate-release.git",
 	"engines": {

@@ -19,6 +19,22 @@ jobs:
     # Run tests
     - name: Build 
       run: npm run compile
+    - name: Get current package version
+      id: package_version
+      uses: martinbeentjes/npm-get-version-action@v1.1.0
+    - name: Changelog Reader
+      uses: mindsers/changelog-reader-action@v2.0.0
+      with:
+        version: ${{ steps.package_version.outputs.current-version }}
+    - name: Create a Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      with:
+        tag_name : ${{ steps.package_version.outputs.current-version}}
+        release_name: ${{ steps.package_version.outputs.current-version}}
+        body: Publish ${{ steps.package_version.outputs.current-version}}
     - name: Create vsix
       id: create_vsix
       uses: HaaLeo/publish-vscode-extension@v0
@@ -30,24 +46,12 @@ jobs:
         echo $json_var
       env:
         json_var: ${{ steps.create_vsix.outputs.vsixPath}}
-    - name: Get current package version
-      id: package_version
-      uses: martinbeentjes/npm-get-version-action@v1.1.0
-    - name: Create a Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      with:
-        tag_name : ${{ steps.package_version.outputs.current-version}}
-        release_name: ${{ steps.package_version.outputs.current-version}}
-        body: Publish ${{ steps.package_version.outputs.current-version}}
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ${{ steps.create_vsix.outputs.vsixPath}}
         asset_name: ${{ steps.create_vsix.outputs.vsixPath}}
         asset_content_type: application/vsix

@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.0.4
+## [0.0.4]
 
 * new release
 * second cool feature

@@ -25,7 +25,6 @@ jobs:
     - name: Changelog Reader
       uses: mindsers/changelog-reader-action@v2.0.0
       with:
-        validation_depth: 10
         version: ${{ steps.package_version.outputs.current-version }}
         path: 'CHANGELOG.md'
     - name: Create a Release
@@ -43,11 +42,6 @@ jobs:
       with:
         pat: 'fake'
         dryRun: true
-    - name: use output
-      run: |
-        echo $json_var
-      env:
-        json_var: ${{ steps.create_vsix.outputs.vsixPath}}
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       env:

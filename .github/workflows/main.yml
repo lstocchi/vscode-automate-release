@@ -26,6 +26,7 @@ jobs:
       uses: dangoslen/changelog-enforcer@v1.6.0
       with:
         versionPattern: '## ${{ steps.package_version.outputs.current-version }}'
+        skipLabels: ''
     - name: Create a Release
       id: create_release
       uses: actions/create-release@v1

@@ -1,6 +1,6 @@
 # Hello World Sample
 
-This is a Hello World example to test how to automate the release process of a vscode example into the marketplace
+This is a "Hello World" example to test how to automate the release process of a vscode example into the marketplace
 
 ## Demo
 

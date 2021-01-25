@@ -1,0 +1,169 @@
+<idea-plugin>
+  <id>com.redhat.devtools.intellij.tekton</id>
+  <name>Tekton Pipelines by Red Hat</name>
+  <version>1.0</version>
+  <vendor email="developers@redhat.com" url="http://www.redhat.com">Red-Hat</vendor>
+
+  <description><![CDATA[
+      <img src="https://raw.githubusercontent.com/redhat-developer/intellij-tekton/master/src/main/resources/images/tekton.png" width="32" height="32"/>
+      <h2>Overview</h2>
+      <p>A plugin for interacting with Tekton Pipelines using a local or remote instance of Kubernetes or OpenShift clusters providing a streamlined developer experience. This extension is currently in Preview Mode.</p>
+      <p>To run the instance of a Kubernetes cluster locally, developers can use <a href="https://github.com/kubernetes/minikube">Minikube</a>.</p>
+      <p>To run the instance of an OpenShift cluster locally, developers can use <a href="https://developers.redhat.com/products/crc/download/">CRC</a> / <a href="https://developers.redhat.com/products/cdk/download/">CDK</a> / <a href="https://github.com/minishift/minishift/releases">minishift</a>. Currently all clusters are supported, but with some limitations for OpenShift Online Pro where additional storage might be required to create more than two components.</p>
+    ]]></description>
+
+  <change-notes><![CDATA[
+  <p><b>0.5.0</b></p>
+  <p>Tekton Hub integration</p>
+  <p><ul>
+  <li>Tasks from the TektonHub can now be installed as cluster tasks</li>
+  </ul></p>
+  <p>Enhanced code validation</p>
+  <p><ul>
+  <li>runAfter uses in a finally sequence is reported as an error</li>
+  </ul></p>
+  <p>UI enhancements</p>
+  <p><ul>
+  <li>Pipeline execution status can be reported as asynchronous notification</li>
+  <li>Task and pipeline start wizard can display generated taskrun and pipelinerun payloads</li>
+  </ul></p>
+  <p>Validation and code assist aligned with Tekton Pipeline 0.19.0 and Tekton Triggers 0.10.2</p>
+  <p>Switch to tkn 0.15.0</p>
+  <p><b>0.4.1</b></p>
+  <p>Fix incompatibility with 2020.3</p>
+  <p><b>0.4.0</b></p>
+  <p>Tekton Hub integration</p>
+  <p><ul>
+  <li>Tasks can be searched on the Tekton Hub and then installed into the cluster</li>
+  </ul></p>
+  <p>Enhanced code validation</p>
+  <p><ul>
+  <li>Unused parameters/resources/workspaces are grey highlighted when not used in pipeline/task definition</li>
+  </ul></p>
+  <p>UI enhancements</p>
+  <p><ul>
+  <li>The pipelinerun diagram preview now reports task execution status with an icon</li>
+  </ul></p>
+  <p>Fixed incompatibility with JetBrains Kubernetes plugin for Ultimate users</p>
+  <p>Validation and code assist aligned with Tekton Pipeline 0.18.0</p>
+  <p><b>0.3.0</b></p>
+  <p>Enhanced code completion</p>
+  <p><ul>
+  <li>cluster tasks are also proposed for task references</li>
+  <li>Workspaces are generated in task completion</li>
+  <li>Parameters are generated with their default value in task completion</li>
+  </ul></p>
+  <p>UI enhancements</p>
+  <p><ul>
+  <li>The pipeline/pipelinerun diagram preview has been enhanced to better support task ordering (when, results chaining)</li>
+  </ul></p>
+  <p>Fixed incompatibility with JetBrains Kubernetes plugin for Ultimate users</p>
+  <p>Switch to tkn 0.13.1</p>
+  <p>Validation and code assist aligned with Tekton Pipeline 0.17.1 and Tekton Triggers 0.9.0</p>
+  <p><b>0.2.0</b></p>
+  <p>New troubleshooting tool to debug pipeline/task executions</p>
+  <p>Visual editor for pipeline runs next to the source one</p>
+  <p>New add trigger wizard</p>
+  <p>Enhanced code completion</p>
+  <p><ul>
+  <li>when expressions dynamic inputs using other tasks results</li>
+  <li>Resources references from the pipeline</li>
+  </ul></p>
+  <p>UI enhancements</p>
+  <p><ul>
+  <li>Pipeline/task can be started using a prefix for better identification of the run in the tree</li>
+  </ul></p>
+  <p><b>0.1.0</b></p>
+  <p>Visual editor for pipelines next to the source one</p>
+  <p>Reviewed start wizard (for pipelines and tasks)</p>
+  <p>Enhanced code completion</p>
+  <p><ul>
+  <li>Variable substitution for parameters values</li>
+  <li>Existing conditions are proposed when editing <i>conditionRef</i> field</li>
+  <li>Existing tasks from the pipeline are proposed when editing <i>runAfter</i> field</li>
+  </ul></p>
+  <p>UI enhancements</p>
+  <p><ul>
+  <li>Delete associated resources (task runs, pipeline runs) when deleting task or pipeline</li>
+  <li>Runs are now ordered by their starting time</li>
+  <li>Runs still active can now be canceled</li>
+  <li>Logs are now automatically displayed when a task or pipeline is started</li>
+  <li>Multiple elements can now be delete at once</li>
+  <li>Editor is in read-only mode for task runs and pipeline runs</li>
+  </ul></p>
+  <p>Proxy support</p>
+  <p><b>0.0.2</b></p>
+  <p>v1beta1 support</p>
+  <p>Support for workspaces and service accounts in start wizard</p>
+  <p>Support for Tekton Triggers resources</p>
+  <p>Enhanced code assist and validation based on JSON schemas</p>
+  <p>Editing a resource through double click</p>
+  <p>Added Start Last Run command</p>
+  <p>New nodes for TaskRuns, PipelineRuns and Conditions</p>
+  <p>Switch to tkn 0.9.0</p>
+  <p><b>0.0.1</b></p>
+  <p>Initial release</p>
+  <p>Allow create, edit and start actions for pipelines, tasks and resources</p>
+  <p><b>WARNING</b>: Version 0.0.1 of this plugin has been tested and validated against Tekton Pipelines Alpha1.
+  You may have some issues against Tekton Pipelines Beta1</b>
+    ]]>
+  </change-notes>
+
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="193"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.lang</depends>
+  <depends>org.jetbrains.plugins.terminal</depends>
+  <depends>org.jetbrains.plugins.yaml</depends>
+  <depends>org.intellij.plugins.markdown</depends>
+  <depends optional="true" config-file="plugin-json.xml">com.intellij.modules.json</depends>
+  <depends optional="true" config-file="plugin-kubernetes.xml">com.intellij.kubernetes</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+    <applicationConfigurable parentId="tools" instance="com.redhat.devtools.intellij.tektoncd.settings.SettingsConfigurable"
+                             id="com.redhat.devtools.intellij.tektoncd.settings.SettingsConfigurable"
+                             displayName="Tekton Pipelines by Red Hat"/>
+    <applicationService serviceImplementation="com.redhat.devtools.intellij.tektoncd.settings.SettingsState"/>
+    <fileDocumentSynchronizationVetoer implementation="com.redhat.devtools.intellij.tektoncd.listener.SaveInEditorListener" order="first" />
+    <completion.contributor language="any" implementationClass="com.redhat.devtools.intellij.tektoncd.completion.DictionaryContributor"/>
+    <toolWindow id="Tekton" anchor="left" factoryClass="com.redhat.devtools.intellij.tektoncd.WindowToolFactory" icon="/images/cluster.png"/>
+    <fileEditorProvider implementation="com.redhat.devtools.intellij.tektoncd.ui.editors.TektonFileEditorProvider"/>
+    <localInspection language="yaml" bundle="messages.YAMLBundle" displayName="Tekton Unused Variable inspector"
+                     level="WARNING" groupKey="inspections.group.name" enabledByDefault="true"
+                     implementationClass="com.redhat.devtools.intellij.tektoncd.inspector.VariableReferencesInspector"/>
+    <localInspection language="yaml" bundle="messages.YAMLBundle" displayName="Tekton Final Tasks inspector"
+                     level="WARNING" groupKey="inspections.group.name" enabledByDefault="true"
+                     implementationClass="com.redhat.devtools.intellij.tektoncd.inspector.FinallyReferencesInspector"/>
+  </extensions>
+  <actions>
+    <group id="com.redhat.devtools.intellij.tektoncd.tree" popup="true">
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.pipeline.CreatePipelineAction" text="New Pipeline"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.task.CreateTaskAction" text="New Task"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.clustertask.CreateClusterTaskAction" text="New ClusterTask"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.resource.CreateResourceAction" text="New Pipeline Resource"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.condition.CreateConditionAction" text="New Condition"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.triggers.CreateTriggerTemplateAction" text="New TriggerTemplate"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.triggers.CreateTriggerBindingAction" text="New TriggerBinding"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.triggers.CreateClusterTriggerBindingAction" text="New ClusterTriggerBinding"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.triggers.CreateEventListenerAction" text="New Event Listener"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.TektonHubAction" text="Import from TektonHub"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.OpenEditorAction" text="Open in Editor"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.StartAction" text="Start"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.MirrorStartAction" text="Mirror Start"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.StartLastRunAction" text="Start Last Run"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.task.CreateTaskRunTemplateAction" text="Create Run Template"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.AddTriggerAction" text="Add Trigger"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.logs.FollowLogsAction" text="Follow Logs"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.logs.ShowLogsAction" text="Show Logs"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.ShowDiagnosticDataAction" text="Show Diagnostic Data"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.CancelAction" text="Cancel"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.DeleteAction" text="Delete"/>
+      <action class="com.redhat.devtools.intellij.tektoncd.actions.RefreshAction" text="Refresh"/>
+    </group>
+  </actions>
+
+</idea-plugin>

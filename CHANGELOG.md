@@ -1,3 +1,8 @@
+# Version: 0.8.0
+
+* [#3](https://github.com/lstocchi/vscode-automate-release/pull/3): Solve fake issue #1
+
+
 # Change Log
 
 ## [0.0.7]
